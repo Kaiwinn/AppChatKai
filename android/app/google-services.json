@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "956285319212",
+    "project_id": "appchatkai",
+    "storage_bucket": "appchatkai.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:956285319212:android:ee403d7701a3ec0c9b3989",
+        "android_client_info": {
+          "package_name": "com.appchatkai"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "956285319212-hgv29g2duc9o2n3onm4mifc64hk8am7i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfHM_hNo3KWkC8fdz9JppHc0MZQmmTgt8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "956285319212-hgv29g2duc9o2n3onm4mifc64hk8am7i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
