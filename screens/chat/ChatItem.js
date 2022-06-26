@@ -11,7 +11,7 @@ import React, {useState, useEffect} from 'react';
 import {images, fontSizes, colors, icons} from '../../constants/index';
 
 const ChatItem = props => {
-  let {url, name, message, numberOfUnreadMessages} = props.user;
+  let {url, name, message, numberOfUnreadMessages, userId} = props.user;
   const {onPress} = props;
   return (
     <TouchableOpacity
@@ -59,18 +59,21 @@ const ChatItem = props => {
           marginTop: 3,
           flex: 2,
         }}>
-        <Text
-          style={{
-            color: colors.pur,
-            fontWeight: 'bold',
-            fontSize: fontSizes.h3,
-          }}>
-          {name}
-        </Text>
+        <View style={{height: 30, justifyContent: 'center'}}>
+          <Text
+            style={{
+              color: colors.pur,
+              fontWeight: 'bold',
+              fontSize: fontSizes.h3,
+            }}>
+            {name}
+          </Text>
+        </View>
+
         <Text
           style={{
             color: colors.inactive,
-            fontSize: fontSizes.h4,
+            fontSize: fontSizes.h6,
             fontWeight: numberOfUnreadMessages > 0 ? 'bold' : 'normal',
           }}>
           {message}

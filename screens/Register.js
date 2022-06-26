@@ -19,6 +19,7 @@ import {
   firebaseSet,
   firebaseDatabase,
   createUserWithEmailAndPassword,
+  sendEmailVerification,
 } from '../firebase/firebase';
 
 const Register = props => {
@@ -29,9 +30,12 @@ const Register = props => {
   const [errorPassword, setErrorPassword] = useState('');
   const [errorRePassword, setErrorRePassword] = useState('');
   // states to store email/ password
-  const [email, setEmail] = useState('kaiwin@gmail.com');
+  const [email, setEmail] = useState('kaikai @gmail.com');
   const [password, setPassword] = useState('123456');
   const [retypePassword, setRetypePassword] = useState('123456');
+
+  const {navigation, route} = props;
+  const {navigate, goBack} = navigation;
 
   const isValidationOK = () =>
     email.length > 0 &&
@@ -132,16 +136,12 @@ const Register = props => {
               onPress={() => {
                 createUserWithEmailAndPassword(auth, email, password)
                   .then(userCredential => {
-                    debugger;
                     const user = userCredential.user;
-                    firebaseSet(
-                      firebaseRef(firebaseDatabase, `users/${user.uid}`),
-                      {
-                        email: user.email,
-                        emailVerified: user.emailVerified,
-                        accessToken: user.accessToken,
-                      },
-                    );
+                    debugger;
+                    sendEmailVerification(user).then(() => {
+                      console.log('Email verification sent');
+                    });
+                    //
                     navigate('UITabs');
                   })
                   .catch(error => {

@@ -36,4 +36,5 @@ export default {
   delete: require('../assets/delete.png'),
   detail: require('../assets/detail.png'),
   pen: require('../assets/pen.png'),
+  sent: require('../assets/sent.png'),
 };

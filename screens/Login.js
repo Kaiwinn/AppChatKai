@@ -9,6 +9,16 @@ import {
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import {images, fontSizes, colors, icons} from '../constants/index';
+
+import {
+  auth,
+  onAuthStateChanged,
+  firebaseRef,
+  firebaseSet,
+  firebaseDatabase,
+  signInWithEmailAndPassword,
+} from '../firebase/firebase';
+
 import {isValidEmail, isValidPassword} from '../utilities/Validation';
 
 const Login = props => {
@@ -60,6 +70,7 @@ const Login = props => {
               setEmail(text);
             }}
             value={email}
+            keyboardType="email"
             placeholder="Kaiwin@gmail.com"
             placeholderTextColor={'#8a8787'}
             style={styles.input}
@@ -103,7 +114,17 @@ const Login = props => {
                 isValidationOK() == true ? colors.touch : colors.inactive,
             }}
             onPress={() => {
-              navigate('UITabs');
+              signInWithEmailAndPassword(auth, email, password)
+                .then(userCredential => {
+                  const user = userCredential.user;
+                  // debugger;
+                  //
+                  navigate('UITabs');
+                })
+                .catch(error => {
+                  // debugger;
+                  alert(`Cannot signin, error: ${error.message}`);
+                });
             }}>
             <Text style={styles.text4}>Login</Text>
           </TouchableOpacity>

@@ -11,13 +11,18 @@ import React, {useState, useEffect} from 'react';
 import UITabs from '../navigation/UITabs';
 import {images, fontSizes, colors} from '../constants';
 import {UIButton, UILogin} from '../components';
+
 import {
   auth,
   onAuthStateChanged,
   firebaseRef,
   firebaseSet,
   firebaseDatabase,
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
 } from '../firebase/firebase';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Welcome = props => {
   // state
@@ -41,17 +46,24 @@ const Welcome = props => {
   const {navigate, goBack} = navigation;
 
   useEffect(() => {
-    onAuthStateChanged(auth, user => {
-      if (user) {
-        const userId = user.id;
-        debugger;
+    onAuthStateChanged(auth, responseUser => {
+      //debugger;
+      if (responseUser) {
         //save data to Firebase
 
-        firebaseSet(firebaseRef(firebaseDatabase, `users/${userId}`), {
-          email: user.email,
-          emailVerified: user.emailVerified,
-          accessToken: user.accessToken,
-        });
+        let user = {
+          userId: responseUser.uid,
+          email: responseUser.email,
+          emailVerified: responseUser.emailVerified,
+          accessToken: responseUser.accessToken,
+        };
+
+        firebaseSet(
+          firebaseRef(firebaseDatabase, `users/${responseUser.uid}`),
+          user,
+        );
+        // Save user to local storage
+        AsyncStorage.setItem('user', JSON.stringify(user));
         navigate('UITabs');
       }
     });

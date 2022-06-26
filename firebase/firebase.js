@@ -3,11 +3,16 @@ import {
   getAuth,
   onAuthStateChanged,
   createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  sendEmailVerification,
 } from 'firebase/auth';
 import {
   getDatabase,
   ref as firebaseRef,
   set as firebaseSet,
+  child,
+  get,
+  onValue,
 } from 'firebase/database';
 
 const firebaseConfig = {
@@ -29,7 +34,12 @@ export {
   auth,
   firebaseDatabase,
   createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
   onAuthStateChanged,
   firebaseRef,
   firebaseSet,
+  sendEmailVerification,
+  child,
+  get,
+  onValue,
 };
