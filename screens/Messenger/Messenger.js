@@ -60,8 +60,6 @@ const Messenger = props => {
         let stringUser = await AsyncStorage.getItem('user');
         let myUserId = JSON.parse(stringUser).userId;
 
-        debugger;
-
         let updatedChatHistory = Object.keys(snapshotObject)
           .filter(item => item.includes(myUserId))
           .map(eachKey => {
@@ -72,7 +70,6 @@ const Messenger = props => {
             };
           })
           .sort((item1, item2) => item1.timestamp - item2.timestamp);
-        debugger;
 
         for (let i = 0; i < updatedChatHistory.length; i++) {
           let item = updatedChatHistory[i];
@@ -81,8 +78,6 @@ const Messenger = props => {
             i == 0 ? true : item.isSender != updatedChatHistory[i].isSender;
         }
         setChatHistory(updatedChatHistory);
-
-        debugger;
       } else {
         console.log('No data available');
       }
